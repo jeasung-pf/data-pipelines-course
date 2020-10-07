@@ -13,7 +13,7 @@ bitarray>=0.8.1
 bokeh>=0.12.1
 boto3>=1.4.0
 botocore>=1.4.49
-celery>=3.1.23
+celery==4.4.1
 cffi>=1.8.3
 channels>=0.17.3
 chartkick>=0.4.2
