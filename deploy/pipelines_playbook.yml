@@ -27,13 +27,7 @@
     - name: change sshd
       copy: src=templates/sshd_config dest=/etc/ssh/sshd_config
       notify:
-          - restart ssh 
-
-    - name: install pip3
-      apt: name=python3-pip state=present
-
-    - name: virtualenv
-      shell: pip3 install virtualenv
+          - restart ssh
 
     - name: install hdf5
       apt: pkg=libhdf5-dev state=present install_recommends=yes
@@ -65,6 +59,9 @@
     - name: rabbitmq
       apt: name=rabbitmq-server state=present
 
+    - name: libmysqlclient-dev
+      apt: name=libmysqlclient-dev state=present
+
     - name: redis
       apt: name=redis-server state=present
 
@@ -80,10 +77,10 @@
 
     - name: fetch application
       become_user: deploy
-      git: repo=git@github.com:kjam/data-pipelines-course.git dest=/var/www/pipelines key_file=~/.ssh/deploy accept_hostkey=yes force=yes
+      git: repo=https://github.com/jeasung-pf/data-pipelines-course.git dest=/var/www/pipelines
 
     - name: install requirements
-      pip: requirements=/var/www/pipelines/requirements.txt virtualenv=/home/deploy/venv
+      pip: requirements=/var/www/pipelines/requirements.txt virtualenv_python=/home/ubuntu/anaconda3/envs/python3/bin/python  virtualenv=/home/deploy/venv
       environment: 
           HDF5_DIR: /usr/lib/x86_64-linux-gnu/hdf5/serial/  
 
