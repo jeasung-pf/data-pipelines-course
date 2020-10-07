@@ -13,7 +13,7 @@ if os.environ.get('DEPLOY') == 'PROD':
 else:
     config.read(os.path.join(current_dir, 'config/dev.cfg'))
 
-app = Celery('tasks', broker=config.get('celery', 'broker_url'))
+app = Celery('tasks', broker=config.get('celery', 'broker_url'), backend=config.get('celery', 'backend'))
 
 CELERY_CONFIG = {
     'CELERY_IMPORTS': ['tasks'],
