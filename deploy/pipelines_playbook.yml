@@ -96,6 +96,9 @@
     - name: copy config to celery dir
       copy: src=../celery_app/config/prod.cfg dest=/var/www/pipelines/celery_app/config
 
+    - name: copy config to celery dir
+      copy: src=../celery_app/config/dev.cfg dest=/var/www/pipelines/celery_app/config
+
     - name: copy config to nb dir
       copy: src=templates/jupyterhub_config.py dest=/var/www/pipelines/notebooks
 
